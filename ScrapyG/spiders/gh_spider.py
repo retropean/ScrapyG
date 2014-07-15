@@ -15,10 +15,10 @@ import time
 import datetime
 
 class BBSpider(CrawlSpider):
-	name = "bb"
+	name = "gh"
 	download_delay = 5
-	allowed_domains = ["boltbus.com"]
-	start_urls = ["https://www.boltbus.com/"]
+	allowed_domains = ["https://www.greyhound.com/express/"]
+	start_urls = ["https://www.greyhound.com/express/"]
 	
 	def __init__(self):
 		self.driver = webdriver.Firefox()
@@ -30,7 +30,7 @@ class BBSpider(CrawlSpider):
 		CrawlSpider.__del__(self)
 
 	def parse(self, response):
-		self.driver.get("http://www.boltbus.com")
+		self.driver.get("https://www.greyhound.com/express/")
 		self.wait = WebDriverWait(self.driver, 20)
 		items = []
 		
