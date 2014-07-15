@@ -8,9 +8,14 @@ from scrapy.item import Item, Field
 class ScrapygItem(Item):
     # define the fields for your item here like:
     # name = Field()
-	fare = Field()
+	stdfare = Field()
+	reffare = Field()
+	advfare = Field()
+	webfare = Field()
+	duration = Field()
 	origtime = Field()
 	desttime = Field()
+	transfers = Field()
 	orig = Field()
 	dest = Field()
 	date = Field()
