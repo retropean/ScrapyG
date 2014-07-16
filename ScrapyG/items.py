@@ -5,7 +5,7 @@
 
 from scrapy.item import Item, Field
 
-class ScrapygItem(Item):
+class FareItem(Item):
     # define the fields for your item here like:
     # name = Field()
 	stdfare = Field()

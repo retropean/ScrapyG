@@ -2,7 +2,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.spider import Spider
 from scrapy.selector import Selector
 
-from ScrapyB.items import FareItem
+from ScrapyG.items import FareItem
 
 from selenium import selenium
 from selenium import webdriver
