@@ -37,9 +37,9 @@ class BBSpider(CrawlSpider):
 		#find date to scrape that is fourteen days out
 		fourteendays = datetime.datetime.now() + datetime.timedelta(days=14)
 		year = str(fourteendays.year)
-		day = fourteendays.strftime('%d')
-		month = fourteendays.strftime('%m')
-		fourteendate = month + day + year
+		day = str(fourteendays.day)
+		month = str(fourteendays.month)
+		fourteendate = month + '/' + day + '/' + year
 
 		#add all locations
 		#locations = (
@@ -55,72 +55,57 @@ class BBSpider(CrawlSpider):
 		#[2, 12, 0], [2, 12, 1], [2, 12, 2]
 		#)
 		#select the region
-		for location in locations:
-			self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_cphM_forwardRouteUC_lstRegion_textBox')))
-			elem = self.driver.find_element_by_name("ctl00$cphM$forwardRouteUC$lstRegion$textBox")
-			elem.click()
-			region_pattern = "ctl00_cphM_forwardRouteUC_lstRegion_repeater_ctl{reg}_link"
-			region_pattern = region_pattern.format(reg=str(location[0]).zfill(2))
-			elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_cphM_forwardRouteUC_lstRegion_repeater_ctl01_link')))
-			elem = self.driver.find_element_by_id(region_pattern)
-			elem.click()
-			
-			#select the origin
-			time.sleep(3)
-			elem = self.wait.until(EC.invisibility_of_element_located((By.ID, 'imgWait')))
-			elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_cphM_forwardRouteUC_lstOrigin_textBox')))
-			elem = self.driver.find_element_by_id("ctl00_cphM_forwardRouteUC_lstOrigin_textBox")
-			elem.click()
-			origin_pattern = "ctl00_cphM_forwardRouteUC_lstOrigin_repeater_ctl{ori}_link"
-			origin_pattern = origin_pattern.format(ori=str(location[1]).zfill(2))
-			elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_cphM_forwardRouteUC_lstOrigin_repeater_ctl00_link')))
-			elem = self.driver.find_element_by_id(origin_pattern)
-			elem.click()
-			
-			#select the destination
-			time.sleep(3)
-			elem = self.wait.until(EC.invisibility_of_element_located((By.ID, 'imgWait')))
-			elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_cphM_forwardRouteUC_lstDestination_textBox')))
-			elem = self.driver.find_element_by_id("ctl00_cphM_forwardRouteUC_lstDestination_textBox")
-			elem.click()
-			destin_pattern = "ctl00_cphM_forwardRouteUC_lstDestination_repeater_ctl{des}_link"
-			destin_pattern = destin_pattern.format(des=str(location[2]).zfill(2))
-			elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_cphM_forwardRouteUC_lstDestination_repeater_ctl00_link')))
-			elem = self.driver.find_element_by_id(destin_pattern)
-			elem.click()
-			
-			#select the date
-			time.sleep(3)
-			elem = self.wait.until(EC.invisibility_of_element_located((By.ID, 'imgWait')))
-			elem = self.driver.find_element_by_name("ctl00$cphM$forwardRouteUC$txtDepartureDate")
-			elem.click()
-			elem.send_keys(fourteendate)
-			elem.send_keys("\t")
-			originrecord = (self.driver.find_element_by_id("ctl00_cphM_forwardRouteUC_lstOrigin_textBox").get_attribute("value"))
-			destinrecord = (self.driver.find_element_by_id("ctl00_cphM_forwardRouteUC_lstDestination_textBox").get_attribute("value"))
-			daterecord = (self.driver.find_element_by_id("ctl00_cphM_forwardRouteUC_txtDepartureDate").get_attribute("value"))
-			print 'Scraping ' + originrecord + ' to ' + destinrecord + ' for ' + daterecord + '.'
-			
-			#select and click route header in order to refresh the dates
-			elem = self.driver.find_element_by_id("ctl00_cphM_forwardRouteUC_header")
-			elem.click()
-			time.sleep(3)
-			elem = self.wait.until(EC.invisibility_of_element_located((By.ID, 'imgWait')))
-			
-			#begin to collect information
-			sites = self.driver.find_elements_by_xpath('//tr[@class="routeRowShaded"]|//tr[@class="routeRow"]')
+		self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listRegion_Input')))
+		elem = self.driver.find_element_by_id("ctl00_body_listRegion_Input")
+		elem.click()
+		time.sleep(1)
+		elem = self.driver.find_element_by_xpath(".//li[contains(., 'Midwest')]")
+		elem.click()
+		
+		#select the origin
+		time.sleep(1)
+		elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listOrigin_Input')))
+		elem = self.driver.find_element_by_id("ctl00_body_listOrigin_Input")
+		elem.click()
+		time.sleep(1)
+		elem = self.driver.find_element_by_xpath(".//li[contains(., 'Ann Arbor')]")
+		elem.click()
+		
+		#select the destination
+		time.sleep(1)
+		elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listDestination_Input')))
+		elem = self.driver.find_element_by_id("ctl00_body_listDestination_Input")
+		elem.click()
+		time.sleep(1)
+		elem = self.driver.find_element_by_xpath(".//li[contains(., 'Chicago')]")
+		elem.click()
+		
+		#select the date
+		time.sleep(1)
+		elem = self.driver.find_element_by_id("ctl00_body_departureDate_dateInput_text")
+		elem.click()
+		elem.clear()
+		elem.send_keys(fourteendate)
+		elem.send_keys("\t")
+		
+		elem = self.driver.find_element_by_id("expHpBookingSearchTixBtn")
+		elem.click()
+		
+		time.sleep(7)
+		#begin to collect information
+		sites = self.driver.find_elements_by_xpath('//tr[@class="innerRow"]')
 
-			for site in sites:
-				item = FareItem()
-				item['stdfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f3 fareS']").text)
-				item['advfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f2 fareS']").text)
-				item['webfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f1 fareS']").text)
-				item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
-				item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text)
-				item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text)
-				item['duration'] = (site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
-				item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
-				item['timescraped'] = str(datetime.datetime.now().time())
-				item['datescraped'] = str(datetime.datetime.now().date())
-				items.append(item)
+		for site in sites:
+			item = FareItem()
+			item['stdfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f3 fareS']").text)
+			item['advfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f2 fareS']").text)
+			item['webfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f1 fareS']").text)
+			item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
+			item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text)
+			item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text)
+			item['duration'] = (site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
+			item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
+			item['timescraped'] = str(datetime.datetime.now().time())
+			item['datescraped'] = str(datetime.datetime.now().date())
+			items.append(item)
 		return items
