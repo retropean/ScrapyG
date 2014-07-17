@@ -1,0 +1,26 @@
+stdfare,advfare,reffare,dest,datescraped,timescraped,origtime,webfare,date,duration,transfers,orig,desttime
+$40.00,N/A,$46.00,,2014-07-17,12:06:13.016000,"08:50 AM
+Thu, 07/31",$26.00,,"4H, 50M",0,,"12:40 PM
+Thu, 07/31"
+$40.00,N/A,$46.00,,2014-07-17,12:06:13.316000,"11:30 AM
+Thu, 07/31",$18.00,,"9H, 15M",1,,"07:45 PM
+Thu, 07/31"
+$42.00,N/A,$49.00,,2014-07-17,12:06:13.614000,"02:05 PM
+Thu, 07/31",$24.00,,"7H, 25M",1,,"08:30 PM
+Thu, 07/31"
+$44.00,N/A,$51.00,,2014-07-17,12:06:13.894000,"07:50 PM
+Thu, 07/31",$24.00,,"4H, 25M",0,,"11:15 PM
+Thu, 07/31"
+stdfare,advfare,reffare,dest,region,datescraped,timescraped,origtime,webfare,date,transfers,orig,duration,desttime
+$40.00,N/A,$46.00,Chicago,Midwest,2014-07-17,12:13:17.480000,"08:50 AM
+Thu, 07/31",$26.00,,0,Ann Arbor,"4H, 50M","12:40 PM
+Thu, 07/31"
+$40.00,N/A,$46.00,Chicago,Midwest,2014-07-17,12:13:17.752000,"11:30 AM
+Thu, 07/31",$18.00,,1,Ann Arbor,"9H, 15M","07:45 PM
+Thu, 07/31"
+$42.00,N/A,$49.00,Chicago,Midwest,2014-07-17,12:13:18.004000,"02:05 PM
+Thu, 07/31",$24.00,,1,Ann Arbor,"7H, 25M","08:30 PM
+Thu, 07/31"
+$44.00,N/A,$51.00,Chicago,Midwest,2014-07-17,12:13:18.282000,"07:50 PM
+Thu, 07/31",$24.00,,0,Ann Arbor,"4H, 25M","11:15 PM
+Thu, 07/31"

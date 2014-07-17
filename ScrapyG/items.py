@@ -16,6 +16,7 @@ class FareItem(Item):
 	origtime = Field()
 	desttime = Field()
 	transfers = Field()
+	region = Field()
 	orig = Field()
 	dest = Field()
 	date = Field()
