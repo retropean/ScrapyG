@@ -42,17 +42,14 @@ class BBSpider(CrawlSpider):
 		fourteendate = month + '/' + day + '/' + year
 
 		#add all locations
-		locations = (["Midwest", "Ann Arbor", "Chicago"])
-		#[1, 0, 1], [1, 1, 0], [1, 1, 1], [1, 1, 2], [1, 1, 3], [1, 2, 0], 
-		#[1, 3, 0], [1, 3, 1], [1, 3, 2], [1, 3, 3], [1, 3, 4], [1, 3, 5], [1, 4, 0], 
-		#[1, 5, 0], [1, 5, 1], [1, 6, 0], [1, 6, 1], [1, 6, 2], [1, 6, 3], [1, 7, 0], 
-		#[1, 8, 0], [1, 8, 1], [1, 8, 2], [1, 8, 3], [1, 9, 0], [1, 9, 1], [1, 9, 2], 
-		#[2, 0, 0], [2, 0, 1], [2, 0, 2], [2, 1, 0], [2, 1, 1], [2, 1, 2], [2, 2, 0], 
-		#[2, 2, 1], [2, 2, 2], [2, 3, 0], [2, 3, 1], [2, 3, 2], [2, 4, 0], [2, 4, 1], 
-		#[2, 5, 0], [2, 5, 1], [2, 6, 0], [2, 6, 1], [2, 6, 2], [2, 6, 3], [2, 6, 4], 
-		#[2, 6, 5], [2, 7, 0], [2, 8, 0], [2, 8, 1], [2, 8, 2], [2, 8, 3], [2, 8, 4], 
-		#[2, 9, 0], [2, 10, 0], [2, 11, 0], [2, 11, 1], [2, 11, 2], [2, 11, 3], [2, 11, 4], 
-		#[2, 12, 0], [2, 12, 1], [2, 12, 2])
+		locations = (["Midwest", "Ann Arbor", "Chicago"], ["Midwest", "Ann Arbor", "Detroit"], ["Midwest", "Buffalo", "Chicago"], ["Midwest", "Buffalo", "Cincinnati"], ["Midwest", "Buffalo", "Cleveland"], 
+		["Midwest", "Buffalo", "Columbus"], ["Midwest", "Buffalo", "Detroit"], ["Midwest", "Buffalo", "Erie"], ["Midwest", "Buffalo", "Toledo"], 
+		["Midwest", "Buffalo", "Chicago"], ["Midwest", "Champaign", "Atlanta"], ["Midwest", "Champaign", "Chicago"], ["Midwest", "Champaign", "Chicago 95th & Dan Ryan"], ["Midwest", "Champaign", "Effingham"], ["Midwest", "Champaign", "Memphis"], ["Midwest", "Champaign", "Milwaukee"], ["Midwest", "Champaign", "St Louis"], 
+		["Midwest", "Chicago", "Ann Arbor"], ["Midwest", "Chicago", "Atlanta"], ["Midwest", "Chicago", "Buffalo"], ["Midwest", "Chicago", "Champaign"], ["Midwest", "Chicago", "Chattanooga"], ["Midwest", "Chicago", "Cincinnati"], ["Midwest", "Chicago", "Cleveland"], ["Midwest", "Chicago", "Dallas"], ["Midwest", "Chicago", "Davenport"], ["Midwest", "Chicago", "Des Moines"], ["Midwest", "Chicago", "Detroit"], ["Midwest", "Chicago", "Effingham"], ["Midwest", "Chicago", "Erie"],
+		["Midwest", "Chicago", "Indianapolis"], ["Midwest", "Chicago", "Iowa City"], ["Midwest", "Chicago", "Lafayette (e)"], ["Midwest", "Chicago", "Little Rock"], ["Midwest", "Chicago", "London"], ["Midwest", "Chicago", "Louisville"],  ["Midwest", "Chicago", "Macon"], ["Midwest", "Chicago", "Memphis"], ["Midwest", "Chicago", "Milwaukee"], ["Midwest", "Chicago", "Minneapolis"], ["Midwest", "Chicago", "Nashville"], ["Midwest", "Chicago", "New York"], ["Midwest", "Chicago", "Newark"], ["Midwest", "Chicago", "Savannah"], 
+		["Midwest", "Chicago", "St Louis"], ["Midwest", "Chicago", "Texarkana"], ["Midwest", "Chicago", "Toledo"], ["Midwest", "Chicago", "Toronto"], ["Midwest", "Chicago", "Windsor"], 
+		)
+		
 		#select the region
 		print "Scraping " + str(locations[1]) + " to " + str(locations[2]) + " on " + fourteendate
 		self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listRegion_Input')))
