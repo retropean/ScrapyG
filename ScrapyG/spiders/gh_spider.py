@@ -56,6 +56,14 @@ class BBSpider(CrawlSpider):
 		elem = self.driver.find_element_by_id("ctl00_body_listRegion_Input")
 		elem.click()
 		time.sleep(1)
+		
+		print "Testing regions..."
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[2]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[3]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[4]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[5]").text)
+		
 		elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
 		elem.click()
 		
@@ -65,6 +73,13 @@ class BBSpider(CrawlSpider):
 		elem = self.driver.find_element_by_id("ctl00_body_listOrigin_Input")
 		elem.click()
 		time.sleep(1)
+		
+		print "Testing origins..."
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[2]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[3]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[4]").text)
+		
 		elem = self.driver.find_element_by_xpath(".//li[contains(., locations[1])]")
 		elem.click()
 		
@@ -74,6 +89,11 @@ class BBSpider(CrawlSpider):
 		elem = self.driver.find_element_by_id("ctl00_body_listDestination_Input")
 		elem.click()
 		time.sleep(1)
+		
+		print "Testing destinations..."
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
+		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[2]").text)
+		
 		elem = self.driver.find_element_by_xpath(".//li[contains(., locations[2])]")
 		elem.click()
 		
