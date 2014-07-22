@@ -64,7 +64,8 @@ class BBSpider(CrawlSpider):
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[4]").text)
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[5]").text)
 		
-		elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
+		#elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
+		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]")
 		elem.click()
 		
 		#select the origin
@@ -80,7 +81,7 @@ class BBSpider(CrawlSpider):
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[3]").text)
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[4]").text)
 		
-		elem = self.driver.find_element_by_xpath(".//li[contains(., locations[1])]")
+		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]")
 		elem.click()
 		
 		#select the destination
@@ -94,7 +95,7 @@ class BBSpider(CrawlSpider):
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[2]").text)
 		
-		elem = self.driver.find_element_by_xpath(".//li[contains(., locations[2])]")
+		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]")
 		elem.click()
 		
 		#select the date
