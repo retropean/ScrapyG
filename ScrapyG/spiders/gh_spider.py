@@ -42,16 +42,16 @@ class BBSpider(CrawlSpider):
 		fourteendate = month + '/' + day + '/' + year
 
 		#add all locations
-		locations = (["Midwest", "Ann Arbor", "Chicago"], ["Midwest", "Ann Arbor", "Detroit"], ["Midwest", "Buffalo", "Chicago"], ["Midwest", "Buffalo", "Cincinnati"], ["Midwest", "Buffalo", "Cleveland"], 
-		["Midwest", "Buffalo", "Columbus"], ["Midwest", "Buffalo", "Detroit"], ["Midwest", "Buffalo", "Erie"], ["Midwest", "Buffalo", "Toledo"], 
-		["Midwest", "Buffalo", "Chicago"], ["Midwest", "Champaign", "Atlanta"], ["Midwest", "Champaign", "Chicago"], ["Midwest", "Champaign", "Chicago 95th & Dan Ryan"], ["Midwest", "Champaign", "Effingham"], ["Midwest", "Champaign", "Memphis"], ["Midwest", "Champaign", "Milwaukee"], ["Midwest", "Champaign", "St Louis"], 
-		["Midwest", "Chicago", "Ann Arbor"], ["Midwest", "Chicago", "Atlanta"], ["Midwest", "Chicago", "Buffalo"], ["Midwest", "Chicago", "Champaign"], ["Midwest", "Chicago", "Chattanooga"], ["Midwest", "Chicago", "Cincinnati"], ["Midwest", "Chicago", "Cleveland"], ["Midwest", "Chicago", "Dallas"], ["Midwest", "Chicago", "Davenport"], ["Midwest", "Chicago", "Des Moines"], ["Midwest", "Chicago", "Detroit"], ["Midwest", "Chicago", "Effingham"], ["Midwest", "Chicago", "Erie"],
-		["Midwest", "Chicago", "Indianapolis"], ["Midwest", "Chicago", "Iowa City"], ["Midwest", "Chicago", "Lafayette (e)"], ["Midwest", "Chicago", "Little Rock"], ["Midwest", "Chicago", "London"], ["Midwest", "Chicago", "Louisville"],  ["Midwest", "Chicago", "Macon"], ["Midwest", "Chicago", "Memphis"], ["Midwest", "Chicago", "Milwaukee"], ["Midwest", "Chicago", "Minneapolis"], ["Midwest", "Chicago", "Nashville"], ["Midwest", "Chicago", "New York"], ["Midwest", "Chicago", "Newark"], ["Midwest", "Chicago", "Savannah"], 
-		["Midwest", "Chicago", "St Louis"], ["Midwest", "Chicago", "Texarkana"], ["Midwest", "Chicago", "Toledo"], ["Midwest", "Chicago", "Toronto"], ["Midwest", "Chicago", "Windsor"], 
-		)
+		#locations = (["Midwest", "Ann Arbor", "Chicago"], ["Midwest", "Ann Arbor", "Detroit"], ["Midwest", "Buffalo", "Chicago"], ["Midwest", "Buffalo", "Cincinnati"], ["Midwest", "Buffalo", "Cleveland"], 
+		#["Midwest", "Buffalo", "Columbus"], ["Midwest", "Buffalo", "Detroit"], ["Midwest", "Buffalo", "Erie"], ["Midwest", "Buffalo", "Toledo"], 
+		#["Midwest", "Buffalo", "Chicago"], ["Midwest", "Champaign", "Atlanta"], ["Midwest", "Champaign", "Chicago"], ["Midwest", "Champaign", "Chicago 95th & Dan Ryan"], ["Midwest", "Champaign", "Effingham"], ["Midwest", "Champaign", "Memphis"], ["Midwest", "Champaign", "Milwaukee"], ["Midwest", "Champaign", "St Louis"], 
+		#["Midwest", "Chicago", "Ann Arbor"], ["Midwest", "Chicago", "Atlanta"], ["Midwest", "Chicago", "Buffalo"], ["Midwest", "Chicago", "Champaign"], ["Midwest", "Chicago", "Chattanooga"], ["Midwest", "Chicago", "Cincinnati"], ["Midwest", "Chicago", "Cleveland"], ["Midwest", "Chicago", "Dallas"], ["Midwest", "Chicago", "Davenport"], ["Midwest", "Chicago", "Des Moines"], ["Midwest", "Chicago", "Detroit"], ["Midwest", "Chicago", "Effingham"], ["Midwest", "Chicago", "Erie"],
+		#["Midwest", "Chicago", "Indianapolis"], ["Midwest", "Chicago", "Iowa City"], ["Midwest", "Chicago", "Lafayette (e)"], ["Midwest", "Chicago", "Little Rock"], ["Midwest", "Chicago", "London"], ["Midwest", "Chicago", "Louisville"],  ["Midwest", "Chicago", "Macon"], ["Midwest", "Chicago", "Memphis"], ["Midwest", "Chicago", "Milwaukee"], ["Midwest", "Chicago", "Minneapolis"], ["Midwest", "Chicago", "Nashville"], ["Midwest", "Chicago", "New York"], ["Midwest", "Chicago", "Newark"], ["Midwest", "Chicago", "Savannah"], 
+		#["Midwest", "Chicago", "St Louis"], ["Midwest", "Chicago", "Texarkana"], ["Midwest", "Chicago", "Toledo"], ["Midwest", "Chicago", "Toronto"], ["Midwest", "Chicago", "Windsor"], 
+		#)
 		
 		#select the region
-		print "Scraping " + str(locations[1]) + " to " + str(locations[2]) + " on " + fourteendate
+		#print "Scraping " + str(locations[1]) + " to " + str(locations[2]) + " on " + fourteendate
 		self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listRegion_Input')))
 		elem = self.driver.find_element_by_id("ctl00_body_listRegion_Input")
 		elem.click()
@@ -66,6 +66,7 @@ class BBSpider(CrawlSpider):
 		
 		#elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
 		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]")
+		region = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]").text)
 		elem.click()
 		
 		#select the origin
@@ -81,7 +82,9 @@ class BBSpider(CrawlSpider):
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[3]").text)
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[4]").text)
 		
+		origin = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]").text)
 		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]")
+		
 		elem.click()
 		
 		#select the destination
@@ -94,7 +97,7 @@ class BBSpider(CrawlSpider):
 		print "Testing destinations..."
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
 		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[2]").text)
-		
+		destination = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
 		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]")
 		elem.click()
 		
@@ -121,9 +124,9 @@ class BBSpider(CrawlSpider):
 			item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
 			item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text)
 			item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text)
-			item['region'] = locations[0]
-			item['orig'] = locations[1]
-			item['dest'] = locations[2]
+			item['region'] = region
+			item['orig'] = origin
+			item['dest'] = destination
 			item['date'] = fourteendate
 			item['duration'] = (site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
 			item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
