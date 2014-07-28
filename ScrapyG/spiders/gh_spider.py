@@ -52,69 +52,74 @@ class BBSpider(CrawlSpider):
 		
 		#select the region
 		#print "Scraping " + str(locations[1]) + " to " + str(locations[2]) + " on " + fourteendate
-		self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listRegion_Input')))
-		elem = self.driver.find_element_by_id("ctl00_body_listRegion_Input")
-		elem.click()
-		time.sleep(1)
-		
-		#elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
-		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]")
-		region = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]").text)
-		elem.click()
-		
-		#select the origin
-		time.sleep(1)
-		elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listOrigin_Input')))
-		elem = self.driver.find_element_by_id("ctl00_body_listOrigin_Input")
-		elem.click()
-		time.sleep(1)
-				
-		origin = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]").text)
-		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]")
-		
-		elem.click()
-		
-		#select the destination
-		time.sleep(1)
-		elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listDestination_Input')))
-		elem = self.driver.find_element_by_id("ctl00_body_listDestination_Input")
-		elem.click()
-		time.sleep(1)
-		
-		destination = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
-		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]")
-		elem.click()
-		
-		#select the date
-		time.sleep(1)
-		elem = self.driver.find_element_by_id("ctl00_body_departureDate_dateInput_text")
-		elem.click()
-		elem.clear()
-		elem.send_keys(fourteendate)
-		elem.send_keys("\t")
-		
-		elem = self.driver.find_element_by_id("expHpBookingSearchTixBtn")
-		elem.click()
-		
-		time.sleep(7)
-		#begin to collect information
-		sites = self.driver.find_elements_by_xpath('//tr[@class="innerRow"]')
+		region_counter = 1
+		while (region_counter <= 5):
+			self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listRegion_Input')))
+			elem = self.driver.find_element_by_id("ctl00_body_listRegion_Input")
+			elem.click()
+			time.sleep(1)
+			
+			#elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
+			region_pattern = ".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[{r_counter}]".format(r_counter = region_counter)
+			elem = self.driver.find_element_by_xpath(region_pattern)
+			region = self.driver.find_element_by_xpath(region_pattern).text
+			elem.click()
+			
+			#select the origin
+			time.sleep(1)
+			elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listOrigin_Input')))
+			elem = self.driver.find_element_by_id("ctl00_body_listOrigin_Input")
+			elem.click()
+			time.sleep(1)
+					
+			origin = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]").text)
+			elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]")
+			
+			elem.click()
+			
+			#select the destination
+			time.sleep(1)
+			elem = self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_listDestination_Input')))
+			elem = self.driver.find_element_by_id("ctl00_body_listDestination_Input")
+			elem.click()
+			time.sleep(1)
+			
+			destination = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
+			elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]")
+			elem.click()
+			
+			#select the date
+			time.sleep(1)
+			elem = self.driver.find_element_by_id("ctl00_body_departureDate_dateInput_text")
+			elem.click()
+			elem.clear()
+			elem.send_keys(fourteendate)
+			elem.send_keys("\t")
+			
+			elem = self.driver.find_element_by_id("expHpBookingSearchTixBtn")
+			elem.click()
+			
+			time.sleep(7)
+			#begin to collect information
+			sites = self.driver.find_elements_by_xpath('//tr[@class="innerRow"]')
 
-		for site in sites:
-			item = FareItem()
-			item['stdfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f3 fareS']").text)
-			item['advfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f2 fareS']").text)
-			item['webfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f1 fareS']").text)
-			item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
-			item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text)
-			item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text)
-			item['region'] = region
-			item['orig'] = origin
-			item['dest'] = destination
-			item['date'] = fourteendate
-			item['duration'] = (site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
-			item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
-			item['timescraped'] = str(datetime.datetime.now().time())
-			item['datescraped'] = str(datetime.datetime.now().date())
-			items.append(item)
+			for site in sites:
+				item = FareItem()
+				item['stdfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f3 fareS']").text)
+				item['advfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f2 fareS']").text)
+				item['webfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f1 fareS']").text)
+				item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
+				item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text)
+				item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text)
+				item['region'] = region
+				item['orig'] = origin
+				item['dest'] = destination
+				item['date'] = fourteendate
+				item['duration'] = (site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
+				item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
+				item['timescraped'] = str(datetime.datetime.now().time())
+				item['datescraped'] = str(datetime.datetime.now().date())
+				items.append(item)
+			region_counter = region_counter + 1
+			self.driver.back()
 		return items
