@@ -55,8 +55,8 @@ class BBSpider(CrawlSpider):
 		region_counter = 1
 		origin_counter = 1
 		destination_counter = 1
-		last_origin = 2
-		last_destination = 2
+		last_origin = 6
+		last_destination = 6
 		while (region_counter <= 5):
 			while(origin_counter <= last_origin):
 				while(destination_counter <= last_destination):
@@ -79,8 +79,11 @@ class BBSpider(CrawlSpider):
 					time.sleep(1)
 					
 					origin_pattern = ".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[{o_counter}]".format(o_counter = origin_counter)
-					origin = (self.driver.find_element_by_xpath(origin_pattern).text)
 					elem = self.driver.find_element_by_xpath(origin_pattern)
+					if elem.is_displayed() is False:
+						origin_counter = 1
+						break
+					origin = (self.driver.find_element_by_xpath(origin_pattern).text)
 					elem.click()
 					time.sleep(1)
 					
@@ -91,8 +94,11 @@ class BBSpider(CrawlSpider):
 					time.sleep(1)
 					
 					destination_pattern = ".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[{d_counter}]".format(d_counter = destination_counter)
-					destination = (self.driver.find_element_by_xpath(destination_pattern).text)
 					elem = self.driver.find_element_by_xpath(destination_pattern)
+					if elem.is_displayed() is False:
+						destination_counter = 1
+						break
+					destination = (self.driver.find_element_by_xpath(destination_pattern).text)
 					elem.click()
 					time.sleep(1)
 					
