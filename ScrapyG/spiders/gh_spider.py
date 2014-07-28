@@ -57,13 +57,6 @@ class BBSpider(CrawlSpider):
 		elem.click()
 		time.sleep(1)
 		
-		print "Testing regions..."
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[2]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[3]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[4]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[5]").text)
-		
 		#elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
 		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]")
 		region = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[1]").text)
@@ -75,13 +68,7 @@ class BBSpider(CrawlSpider):
 		elem = self.driver.find_element_by_id("ctl00_body_listOrigin_Input")
 		elem.click()
 		time.sleep(1)
-		
-		print "Testing origins..."
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[2]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[3]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[4]").text)
-		
+				
 		origin = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]").text)
 		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[1]")
 		
@@ -94,9 +81,6 @@ class BBSpider(CrawlSpider):
 		elem.click()
 		time.sleep(1)
 		
-		print "Testing destinations..."
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
-		print (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[2]").text)
 		destination = (self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]").text)
 		elem = self.driver.find_element_by_xpath(".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[1]")
 		elem.click()
