@@ -40,23 +40,13 @@ class BBSpider(CrawlSpider):
 		day = str(fourteendays.day)
 		month = str(fourteendays.month)
 		fourteendate = month + '/' + day + '/' + year
-
-		#add all locations
-		#locations = (["Midwest", "Ann Arbor", "Chicago"], ["Midwest", "Ann Arbor", "Detroit"], ["Midwest", "Buffalo", "Chicago"], ["Midwest", "Buffalo", "Cincinnati"], ["Midwest", "Buffalo", "Cleveland"], 
-		#["Midwest", "Buffalo", "Columbus"], ["Midwest", "Buffalo", "Detroit"], ["Midwest", "Buffalo", "Erie"], ["Midwest", "Buffalo", "Toledo"], 
-		#["Midwest", "Buffalo", "Chicago"], ["Midwest", "Champaign", "Atlanta"], ["Midwest", "Champaign", "Chicago"], ["Midwest", "Champaign", "Chicago 95th & Dan Ryan"], ["Midwest", "Champaign", "Effingham"], ["Midwest", "Champaign", "Memphis"], ["Midwest", "Champaign", "Milwaukee"], ["Midwest", "Champaign", "St Louis"], 
-		#["Midwest", "Chicago", "Ann Arbor"], ["Midwest", "Chicago", "Atlanta"], ["Midwest", "Chicago", "Buffalo"], ["Midwest", "Chicago", "Champaign"], ["Midwest", "Chicago", "Chattanooga"], ["Midwest", "Chicago", "Cincinnati"], ["Midwest", "Chicago", "Cleveland"], ["Midwest", "Chicago", "Dallas"], ["Midwest", "Chicago", "Davenport"], ["Midwest", "Chicago", "Des Moines"], ["Midwest", "Chicago", "Detroit"], ["Midwest", "Chicago", "Effingham"], ["Midwest", "Chicago", "Erie"],
-		#["Midwest", "Chicago", "Indianapolis"], ["Midwest", "Chicago", "Iowa City"], ["Midwest", "Chicago", "Lafayette (e)"], ["Midwest", "Chicago", "Little Rock"], ["Midwest", "Chicago", "London"], ["Midwest", "Chicago", "Louisville"],  ["Midwest", "Chicago", "Macon"], ["Midwest", "Chicago", "Memphis"], ["Midwest", "Chicago", "Milwaukee"], ["Midwest", "Chicago", "Minneapolis"], ["Midwest", "Chicago", "Nashville"], ["Midwest", "Chicago", "New York"], ["Midwest", "Chicago", "Newark"], ["Midwest", "Chicago", "Savannah"], 
-		#["Midwest", "Chicago", "St Louis"], ["Midwest", "Chicago", "Texarkana"], ["Midwest", "Chicago", "Toledo"], ["Midwest", "Chicago", "Toronto"], ["Midwest", "Chicago", "Windsor"], 
-		#)
 		
 		#select the region
-		#print "Scraping " + str(locations[1]) + " to " + str(locations[2]) + " on " + fourteendate
 		region_counter = 1
 		origin_counter = 1
 		destination_counter = 1
-		last_origin = 6
-		last_destination = 6
+		last_origin = 100
+		last_destination = 100
 		while (region_counter <= 5):
 			while(origin_counter <= last_origin):
 				while(destination_counter <= last_destination):
@@ -65,7 +55,6 @@ class BBSpider(CrawlSpider):
 					elem.click()
 					time.sleep(1)
 					
-					#elem = self.driver.find_element_by_xpath(".//li[contains(., locations[0])]")
 					region_pattern = ".//div[@id='ctl00_body_listRegion_DropDown']/div/ul/li[{r_counter}]".format(r_counter = region_counter)
 					elem = self.driver.find_element_by_xpath(region_pattern)
 					region = self.driver.find_element_by_xpath(region_pattern).text
@@ -79,9 +68,12 @@ class BBSpider(CrawlSpider):
 					time.sleep(1)
 					
 					origin_pattern = ".//div[@id='ctl00_body_listOrigin_DropDown']/div/ul/li[{o_counter}]".format(o_counter = origin_counter)
-					elem = self.driver.find_element_by_xpath(origin_pattern)
-					if elem.is_displayed() is False:
+					try:
+						elem = self.driver.find_element_by_xpath(origin_pattern)
+					except:
 						origin_counter = 1
+						destination_counter = 1
+						region_counter = region_counter + 1
 						break
 					origin = (self.driver.find_element_by_xpath(origin_pattern).text)
 					elem.click()
@@ -94,9 +86,11 @@ class BBSpider(CrawlSpider):
 					time.sleep(1)
 					
 					destination_pattern = ".//div[@id='ctl00_body_listDestination_DropDown']/div/ul/li[{d_counter}]".format(d_counter = destination_counter)
-					elem = self.driver.find_element_by_xpath(destination_pattern)
-					if elem.is_displayed() is False:
+					try:
+						elem = self.driver.find_element_by_xpath(destination_pattern)
+					except:
 						destination_counter = 1
+						print "Finished scraping departures from origin " + origin
 						break
 					destination = (self.driver.find_element_by_xpath(destination_pattern).text)
 					elem.click()
@@ -114,6 +108,7 @@ class BBSpider(CrawlSpider):
 					time.sleep(7)
 					
 					#begin to collect information
+					print "Scraping " + origin + " to " + destination + " on " + fourteendate
 					sites = self.driver.find_elements_by_xpath('//tr[@class="innerRow"]')
 
 					for site in sites:
