@@ -117,8 +117,8 @@ class BBSpider(CrawlSpider):
 						item['advfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f2 fareS']").text)
 						item['webfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f1 fareS']").text)
 						item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
-						item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text)
-						item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text)
+						item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text).split("\n",1)[0]
+						item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text).split("\n",1)[0]
 						item['region'] = region
 						item['orig'] = origin
 						item['dest'] = destination
