@@ -22,4 +22,5 @@ class FareItem(Item):
 	date = Field()
 	timescraped = Field()
 	datescraped = Field()
+	express = Field()
 pass

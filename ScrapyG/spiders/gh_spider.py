@@ -127,6 +127,11 @@ class BBSpider(CrawlSpider):
 						item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
 						item['timescraped'] = str(datetime.datetime.now().time())
 						item['datescraped'] = str(datetime.datetime.now().date())
+						try:
+							site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']/img")
+							item['express'] = "yes"
+						except:
+							item['express'] = "no"
 						items.append(item)
 					
 					self.driver.back()
