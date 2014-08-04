@@ -96,6 +96,11 @@ class BBSpider(CrawlSpider):
 					elem.click()
 					time.sleep(1)
 					
+					if origin == destination:
+						print "Origin and destination are the same."
+						destination_counter = destination_counter + 1
+						continue
+					
 					#select the date
 					elem = self.driver.find_element_by_id("ctl00_body_departureDate_dateInput_text")
 					elem.click()
