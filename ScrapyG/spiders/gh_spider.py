@@ -36,11 +36,11 @@ class BBSpider(CrawlSpider):
 		items = []
 		
 		#Set up the date to be scraped based on user input
-		fourteendays = datetime.datetime.now() + datetime.timedelta(days=daysout)
-		year = str(fourteendays.year)
-		day = str(fourteendays.day)
-		month = str(fourteendays.month)
-		fourteendate = month + '/' + day + '/' + year
+		readdays = datetime.datetime.now() + datetime.timedelta(days=daysout)
+		year = str(readdays.year)
+		day = str(readdays.day)
+		month = str(readdays.month)
+		readdate = month + '/' + day + '/' + year
 		
 		#select the region
 		region_counter = 1
@@ -106,7 +106,7 @@ class BBSpider(CrawlSpider):
 					elem = self.driver.find_element_by_id("ctl00_body_departureDate_dateInput_text")
 					elem.click()
 					elem.clear()
-					elem.send_keys(fourteendate)
+					elem.send_keys(readdate)
 					elem.send_keys("\t")
 					
 					elem = self.driver.find_element_by_id("expHpBookingSearchTixBtn")
@@ -114,7 +114,7 @@ class BBSpider(CrawlSpider):
 					time.sleep(7)
 					
 					#begin to collect information
-					print "Scraping " + origin + " to " + destination + " on " + fourteendate
+					print "Scraping " + origin + " to " + destination + " on " + readdate
 					sites = self.driver.find_elements_by_xpath('//tr[@class="innerRow"]')
 
 					for site in sites:
@@ -128,7 +128,7 @@ class BBSpider(CrawlSpider):
 						item['region'] = region
 						item['orig'] = origin
 						item['dest'] = destination
-						item['date'] = fourteendate
+						item['date'] = readdate
 						item['duration'] = (site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
 						item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
 						item['timescraped'] = str(datetime.datetime.now().time())
