@@ -1,0 +1,1 @@
+scrapy crawl gh -o gh.csv -t csv

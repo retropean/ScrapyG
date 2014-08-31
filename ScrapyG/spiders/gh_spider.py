@@ -30,12 +30,13 @@ class BBSpider(CrawlSpider):
 		CrawlSpider.__del__(self)
 
 	def parse(self, response):
+		daysout = input('Read how many days out: ')
 		self.driver.get("https://www.greyhound.com/express/")
 		self.wait = WebDriverWait(self.driver, 20)
 		items = []
 		
-		#find date to scrape that is fourteen days out
-		fourteendays = datetime.datetime.now() + datetime.timedelta(days=14)
+		#Set up the date to be scraped based on user input
+		fourteendays = datetime.datetime.now() + datetime.timedelta(days=daysout)
 		year = str(fourteendays.year)
 		day = str(fourteendays.day)
 		month = str(fourteendays.month)
