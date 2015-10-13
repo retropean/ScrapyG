@@ -1,27 +1,27 @@
-[INFO  - 2015-09-17T19:10:36.392Z] GhostDriver - Main - running on port 59613
-[INFO  - 2015-09-17T19:10:36.532Z] Session [c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.0.0 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2015-09-17T19:10:36.532Z] Session [c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6] - page.customHeaders:  - {}
-[INFO  - 2015-09-17T19:10:36.532Z] Session [c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.0.0","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2015-09-17T19:10:36.532Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6
-[ERROR - 2015-09-17T19:10:51.020Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517050966
+[INFO  - 2015-10-13T14:48:08.163Z] GhostDriver - Main - running on port 59479
+[INFO  - 2015-10-13T14:48:08.415Z] Session [6b142940-71b9-11e5-8ac3-699aac511102] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.0.0 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2015-10-13T14:48:08.416Z] Session [6b142940-71b9-11e5-8ac3-699aac511102] - page.customHeaders:  - {}
+[INFO  - 2015-10-13T14:48:08.416Z] Session [6b142940-71b9-11e5-8ac3-699aac511102] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.0.0","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-10-13T14:48:08.416Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 6b142940-71b9-11e5-8ac3-699aac511102
+[ERROR - 2015-10-13T14:48:19.662Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747699658
 
   :262 in error
-[ERROR - 2015-09-17T19:10:52.366Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517052327
+[ERROR - 2015-10-13T14:48:20.980Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747700930
 
   :262 in error
-[ERROR - 2015-09-17T19:10:53.548Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517053509
+[ERROR - 2015-10-13T14:48:22.336Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747702301
 
   :262 in error
-[ERROR - 2015-09-17T19:10:54.763Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517054739
+[ERROR - 2015-10-13T14:48:23.514Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747703480
 
   :262 in error
-[ERROR - 2015-09-17T19:10:55.604Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517055575
+[ERROR - 2015-10-13T14:48:24.684Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747704643
 
   :262 in error
-[ERROR - 2015-09-17T19:10:56.487Z] Session [c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6] - page.onError - msg: TypeError: null is not an object (evaluating 'a.length')
+[ERROR - 2015-10-13T14:48:25.859Z] Session [6b142940-71b9-11e5-8ac3-699aac511102] - page.onError - msg: TypeError: null is not an object (evaluating 'a.length')
 
   :262 in error
-[ERROR - 2015-09-17T19:10:56.488Z] Session [c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6] - page.onError - stack:
+[ERROR - 2015-10-13T14:48:25.860Z] Session [6b142940-71b9-11e5-8ac3-699aac511102] - page.onError - stack:
   each (https://www.greyhound.com/scripts/jquery-1.4.2.min.js:29)
   CheckSimilarTravelExists (https://www.greyhound.com/scripts/farefinder/farefinder_v4.js:3821)
   _get_locationsimilartravelorigins_complete (https://www.greyhound.com/scripts/farefinder/farefinder_v4.js:523)
@@ -31,46 +31,18 @@
   _onReadyStateChange (https://www.greyhound.com/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl00_tkScptMngr_TSM&compress=1&_TSM_CombinedScripts_=%3B%3BSystem.Web.Extensions%2C+Version%3D3.5.0.0%2C+Culture%3Dneutral%2C+PublicKeyToken%3D31bf3856ad364e35%3Aen-US%3A0d787d5c-3903-4814-ad72-296cea810318%3Aea597d4b%3Ab25378d2%3BTelerik.Web.UI%3Aen-US%3A7302be66-e7a1-4bc1-8280-71f03d66eba0%3A16e4e7cd%3Af7645509%3A22a6274a%3Aed16cbdc%3A24ee1bba%3A1e771326%3Aaa288e2d%3A8674cba1%3Ab7778d6c%3Ac08e9f8a%3A59462f1%3Aa51ee93e%3A2e42e72a%3Aef347303%3A874f8ea2%3A19620875%3A490a9d4e%3Abd8f85e4:6)
 
   :262 in error
-[ERROR - 2015-09-17T19:10:57.009Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517056954
+[ERROR - 2015-10-13T14:48:26.363Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747706309
 
   :262 in error
-[ERROR - 2015-09-17T19:10:57.976Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517057917
+[ERROR - 2015-10-13T14:48:27.400Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747707345
 
   :262 in error
-[ERROR - 2015-09-17T19:10:58.803Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517058752
+[ERROR - 2015-10-13T14:48:28.398Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747708347
 
   :262 in error
-[ERROR - 2015-09-17T19:11:04.902Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517064873
+[ERROR - 2015-10-13T14:48:41.690Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747721632
 
   :262 in error
-[ERROR - 2015-09-17T19:11:06.150Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517066103
-
-  :262 in error
-[ERROR - 2015-09-17T19:11:07.338Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517067299
-
-  :262 in error
-[ERROR - 2015-09-17T19:11:08.514Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517068487
-
-  :262 in error
-[ERROR - 2015-09-17T19:11:09.695Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517069657
-
-  :262 in error
-[ERROR - 2015-09-17T19:11:10.899Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517070845
-
-  :262 in error
-[ERROR - 2015-09-17T19:11:12.016Z] Session [c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6] - page.onError - msg: TypeError: null is not an object (evaluating 'a.length')
-
-  :262 in error
-[ERROR - 2015-09-17T19:11:12.016Z] Session [c6f2ebb0-5d6f-11e5-9b20-a56c7efe45c6] - page.onError - stack:
-  each (https://www.greyhound.com/scripts/jquery-1.4.2.min.js:29)
-  CheckSimilarTravelExists (https://www.greyhound.com/scripts/farefinder/farefinder_v4.js:3821)
-  _get_locationsimilartravelorigins_complete (https://www.greyhound.com/scripts/farefinder/farefinder_v4.js:523)
-  l (https://www.greyhound.com/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl00_tkScptMngr_TSM&compress=1&_TSM_CombinedScripts_=%3B%3BSystem.Web.Extensions%2C+Version%3D3.5.0.0%2C+Culture%3Dneutral%2C+PublicKeyToken%3D31bf3856ad364e35%3Aen-US%3A0d787d5c-3903-4814-ad72-296cea810318%3Aea597d4b%3Ab25378d2%3BTelerik.Web.UI%3Aen-US%3A7302be66-e7a1-4bc1-8280-71f03d66eba0%3A16e4e7cd%3Af7645509%3A22a6274a%3Aed16cbdc%3A24ee1bba%3A1e771326%3Aaa288e2d%3A8674cba1%3Ab7778d6c%3Ac08e9f8a%3A59462f1%3Aa51ee93e%3A2e42e72a%3Aef347303%3A874f8ea2%3A19620875%3A490a9d4e%3Abd8f85e4:6)
-  (anonymous function) (https://www.greyhound.com/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl00_tkScptMngr_TSM&compress=1&_TSM_CombinedScripts_=%3B%3BSystem.Web.Extensions%2C+Version%3D3.5.0.0%2C+Culture%3Dneutral%2C+PublicKeyToken%3D31bf3856ad364e35%3Aen-US%3A0d787d5c-3903-4814-ad72-296cea810318%3Aea597d4b%3Ab25378d2%3BTelerik.Web.UI%3Aen-US%3A7302be66-e7a1-4bc1-8280-71f03d66eba0%3A16e4e7cd%3Af7645509%3A22a6274a%3Aed16cbdc%3A24ee1bba%3A1e771326%3Aaa288e2d%3A8674cba1%3Ab7778d6c%3Ac08e9f8a%3A59462f1%3Aa51ee93e%3A2e42e72a%3Aef347303%3A874f8ea2%3A19620875%3A490a9d4e%3Abd8f85e4:6)
-  completed (https://www.greyhound.com/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl00_tkScptMngr_TSM&compress=1&_TSM_CombinedScripts_=%3B%3BSystem.Web.Extensions%2C+Version%3D3.5.0.0%2C+Culture%3Dneutral%2C+PublicKeyToken%3D31bf3856ad364e35%3Aen-US%3A0d787d5c-3903-4814-ad72-296cea810318%3Aea597d4b%3Ab25378d2%3BTelerik.Web.UI%3Aen-US%3A7302be66-e7a1-4bc1-8280-71f03d66eba0%3A16e4e7cd%3Af7645509%3A22a6274a%3Aed16cbdc%3A24ee1bba%3A1e771326%3Aaa288e2d%3A8674cba1%3Ab7778d6c%3Ac08e9f8a%3A59462f1%3Aa51ee93e%3A2e42e72a%3Aef347303%3A874f8ea2%3A19620875%3A490a9d4e%3Abd8f85e4:6)
-  _onReadyStateChange (https://www.greyhound.com/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl00_tkScptMngr_TSM&compress=1&_TSM_CombinedScripts_=%3B%3BSystem.Web.Extensions%2C+Version%3D3.5.0.0%2C+Culture%3Dneutral%2C+PublicKeyToken%3D31bf3856ad364e35%3Aen-US%3A0d787d5c-3903-4814-ad72-296cea810318%3Aea597d4b%3Ab25378d2%3BTelerik.Web.UI%3Aen-US%3A7302be66-e7a1-4bc1-8280-71f03d66eba0%3A16e4e7cd%3Af7645509%3A22a6274a%3Aed16cbdc%3A24ee1bba%3A1e771326%3Aaa288e2d%3A8674cba1%3Ab7778d6c%3Ac08e9f8a%3A59462f1%3Aa51ee93e%3A2e42e72a%3Aef347303%3A874f8ea2%3A19620875%3A490a9d4e%3Abd8f85e4:6)
-
-  :262 in error
-[ERROR - 2015-09-17T19:11:12.561Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1442517072558
+[ERROR - 2015-10-13T14:48:42.982Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1444747722927
 
   :262 in error
