@@ -51,6 +51,10 @@ class GHSpider(CrawlSpider):
 			day = scrapedate.strftime('%d')
 			month = scrapedate.strftime('%m')
 			readdate = month + '/' + day + '/' + year
+			year=int(year)
+			day=int(day)
+			month=int(month)
+			departdate=datetime.date(year, month, day)
 			
 			#Enter origin
 			self.wait.until(EC.presence_of_element_located((By.ID, 'ctl00_body_search_listOrigin_Input')))
@@ -88,7 +92,7 @@ class GHSpider(CrawlSpider):
 						
 			elem = self.driver.find_element_by_id("ticketsSearchSchedules")
 			elem.click()
-			
+
 			self.wait.until(EC.presence_of_element_located((By.ID, 'modifySearchLink_new')))
 			print 'Scraping ' + location[0] + ' to ' + location[1] + ' for ' + readdate + '.'
 			sites = self.driver.find_elements_by_xpath('//tr[@class="innerRow"]')
@@ -101,11 +105,19 @@ class GHSpider(CrawlSpider):
 					item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
 					item['origtime'] = (site.find_element_by_xpath(".//td[@class='ptStep2departCol']").text).split("\n",1)[0]
 					item['desttime'] = (site.find_element_by_xpath(".//td[@class='ptStep2arriveCol']").text).split("\n",1)[0]
-					item['orig'] = location[0]
-					item['dest'] = location[1]
-					item['date'] = readdate
-					item['duration'] = (site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
-					item['transfers'] = (site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
+					item['orig'] = str(location[0])
+					item['dest'] = str(location[1])
+					item['date'] = departdate
+					
+					#clean the duration variable
+					durfix = str(site.find_element_by_xpath(".//td[@class='ptStep2travelTimeCol']").text)
+					hour = durfix[0:durfix.index('H')]
+					minutes = durfix[durfix.index('H')+2:durfix.index('M')]
+					hour = int(hour)
+					minutes = int(minutes)
+					durfix = datetime.time(hour, minutes)
+					item['duration'] = durfix					
+					item['transfers'] = int(site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
 					item['timescraped'] = str(datetime.datetime.now().time())
 					item['datescraped'] = str(datetime.datetime.now().date())
 					try:
