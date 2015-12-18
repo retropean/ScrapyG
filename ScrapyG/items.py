@@ -9,8 +9,8 @@ class FareItem(Item):
     # define the fields for your item here like:
     # name = Field()
 	stdfare = Field()
-	reffare = Field()
-	advfare = Field()
+	#reffare = Field()
+	#advfare = Field()
 	webfare = Field()
 	duration = Field()
 	origtime = Field()
