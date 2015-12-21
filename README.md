@@ -9,3 +9,5 @@ To run: first we must launch the <code>selenium.jar</code> file <b>in a separate
 Note... If it becomes necessary to shut down the Selenium server, simply type into the browser:
 
 <code>http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer</code>
+
+Phantomjs can be used for headless testing by launching <code>phantomjs --webdriver=4444</code> after it is installed and located in <code>PATH</code>.
