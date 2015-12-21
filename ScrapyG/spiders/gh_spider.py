@@ -23,9 +23,9 @@ class GHSpider(CrawlSpider):
 	
 	def __init__(self, daysoutcmmd=0, regioncounter=0, *args, **kwargs):
 		#to switch back to firefox (for debugging) uncomment L25 & comment L27-28 or viceversa:
-		self.driver = webdriver.Firefox()
-		#self.driver = webdriver.PhantomJS()
-		#self.driver.set_window_size(1120, 550)
+		#self.driver = webdriver.Firefox()
+		self.driver = webdriver.PhantomJS()
+		self.driver.set_window_size(1120, 550)
 		CrawlSpider.__init__(self)
 		self.daysout = daysoutcmmd
 		self.regioncount = regioncounter
@@ -37,7 +37,7 @@ class GHSpider(CrawlSpider):
 		CrawlSpider.__del__(self)
 
 	def parse(self, response):
-		locations = (["Fresno","Modesto"],["Fresno","Stockton"])
+		locations = (["Fresno","Modesto"],["Fresno","Sacramento"],["Fresno","San Francisco"],["Fresno","Bakersfield"],["Fresno","Los Angeles"],["Modesto","Fresno"],["Sacramento","Fresno"],["San Francisco","Fresno"],["Bakersfield","Fresno"],["Los Angeles","Fresno"])
 		
 		items = []
 		
@@ -61,6 +61,7 @@ class GHSpider(CrawlSpider):
 			elem = self.driver.find_element_by_id("fromLocation")
 			elem.click()
 			elem.send_keys(location[0])
+			self.wait.until(EC.presence_of_element_located((By.ID, 'fromStationHeader')))
 			#try:
 			#	self.driver.find_element_by_xpath("//li[@class='rcbHovered']").click()
 			#except:
@@ -73,6 +74,7 @@ class GHSpider(CrawlSpider):
 			elem = self.driver.find_element_by_id("toLocation")
 			elem.click()
 			elem.send_keys(location[1])
+			self.wait.until(EC.presence_of_element_located((By.ID, 'toStationHeader')))
 			#try:
 			#	self.driver.find_element_by_xpath("//li[@class='rcbHovered']").click()
 			#except:
@@ -95,39 +97,37 @@ class GHSpider(CrawlSpider):
 
 			self.wait.until(EC.presence_of_element_located((By.ID, 'schedule-calendar')))
 			print 'Scraping ' + location[0] + ' to ' + location[1] + ' for ' + readdate + '.'
-			sites = self.driver.find_elements_by_xpath('//tr[@class="fare-row"]')
-			try:
-				for site in sites:
-					item = FareItem()
-					item['stdfare'] = (site.find_element_by_xpath(".//td[@class='trip-price trip-price-offline']").text)
-					#item['advfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f2 fareS']").text)
-					item['webfare'] = (site.find_element_by_xpath(".//td[@class='trip-price']").text)
-					#item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
-					item['origtime'] = (site.find_element_by_xpath(".//td[@class='trip-time trip-time-small']").text)
-					item['desttime'] = (site.find_element_by_xpath(".//td[@class='trip-time trip-time-small']").text)
-					item['orig'] = str(location[0])
-					item['dest'] = str(location[1])
-					item['date'] = departdate
-					
-					#clean the duration variable
-					durfix = str(site.find_element_by_xpath(".//td[@class='trip-duration']").text)
-					hour = durfix[0:durfix.index('h')]
-					minutes = durfix[durfix.index('h')+2:durfix.index('m')]
-					hour = int(hour)
-					minutes = int(minutes)
-					durfix = datetime.time(hour, minutes)
-					item['duration'] = durfix					
-					item['transfers'] = int(site.find_element_by_xpath(".//td[@class='ptStep2transfersCol']").text)
-					item['timescraped'] = str(datetime.datetime.now().time())
-					item['datescraped'] = str(datetime.datetime.now().date())
-					try:
-						site.find_element_by_xpath(".//td[@class='trip-duration']")
-						item['express'] = "yes"
-					except:
-						item['express'] = "no"
-					items.append(item)
-			except:
-				print 'No fares or other error'
-				continue
+			sites = self.driver.find_elements_by_xpath('//tr[@class="trip-details"]')
+			time.sleep(10)
+			
+			for site in sites:
+				item = FareItem()
+				item['stdfare'] = (site.find_element_by_xpath(".//td[@class='trip-price trip-price-offline']").text)
+				#item['advfare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f2 fareS']").text)
+				item['webfare'] = (site.find_element_by_xpath(".//td[@class='trip-price']").text)
+				#item['reffare'] = (site.find_element_by_xpath(".//td[@class='ptStep2f4 fareS']").text)
+				item['origtime'] = (site.find_element_by_xpath(".//li[@class='trip-from']/p[@class='trip-time trip-time-small']").text)
+				item['desttime'] = (site.find_element_by_xpath(".//li[@class='trip-to']/p[@class='trip-time trip-time-small']").text)
+				item['orig'] = str(location[0])
+				item['dest'] = str(location[1])
+				item['date'] = departdate
+				
+				#clean the duration variable
+				durfix = str(site.find_element_by_xpath(".//p[@class='trip-duration']").text)
+				hour = durfix[0:durfix.index('h')]
+				minutes = durfix[durfix.index('h')+2:durfix.index('m')]
+				hour = int(hour)
+				minutes = int(minutes)
+				durfix = datetime.time(hour, minutes)
+				item['duration'] = durfix					
+				item['transfers'] = int(site.find_element_by_xpath(".//p[@class='trip-transfers']").text[:1])
+				item['timescraped'] = str(datetime.datetime.now().time())
+				item['datescraped'] = str(datetime.datetime.now().date())
+				try:
+					site.find_element_by_xpath(".//td[@class='trip-duration']")
+					item['express'] = "yes"
+				except:
+					item['express'] = "no"
+				items.append(item)
 			self.driver.back()
 		return items
