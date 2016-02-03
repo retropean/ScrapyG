@@ -24,9 +24,9 @@ class GHSpider(CrawlSpider):
 	
 	def __init__(self, daysoutcmmd=0, regioncounter=0, *args, **kwargs):
 		#to switch back to firefox (for debugging) uncomment L25 & comment L27-28 or viceversa:
-		self.driver = webdriver.Firefox()
-		#self.driver = webdriver.PhantomJS()
-		#self.driver.set_window_size(1120, 550)
+		#self.driver = webdriver.Firefox()
+		self.driver = webdriver.PhantomJS()
+		self.driver.set_window_size(1120, 550)
 		CrawlSpider.__init__(self)
 		self.daysout = daysoutcmmd
 		self.regioncount = regioncounter
