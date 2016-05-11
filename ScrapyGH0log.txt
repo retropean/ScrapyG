@@ -1,0 +1,45 @@
+Top of the loop
+Enter origin 97201
+Enter destination 97301
+Enter date 05/11/2016
+Search for fares from 97201 to 97301 for 05/11/2016.
+Looking for fare calendar.
+Scraping 97201 to 97301 for 05/11/2016.
+All good, going back
+Top of the loop
+Enter origin 97301
+Enter destination 97201
+Enter date 05/11/2016
+Search for fares from 97301 to 97201 for 05/11/2016.
+Looking for fare calendar.
+Scraping 97301 to 97201 for 05/11/2016.
+All good, going back
+Top of the loop
+Enter origin 97201
+Enter destination olympia
+Enter date 05/11/2016
+Search for fares from 97201 to olympia for 05/11/2016.
+Looking for fare calendar.
+Scraping 97201 to olympia for 05/11/2016.
+All good, going back
+Top of the loop
+Enter origin olympia
+Enter destination 97201
+Enter date 05/11/2016
+Search for fares from olympia to 97201 for 05/11/2016.
+Looking for fare calendar.
+Scraping olympia to 97201 for 05/11/2016.
+All good, going back
+Top of the loop
+Enter origin 97201
+Enter destination 97401
+Enter date 05/11/2016
+Search for fares from 97201 to 97401 for 05/11/2016.
+Looking for fare calendar.
+Scraping 97201 to 97401 for 05/11/2016.
+All good, going back
+Top of the loop
+Enter origin 97401
+Enter destination 97201
+Error, going back
+Terminate batch job (Y/N)? 
