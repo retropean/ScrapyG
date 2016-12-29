@@ -1,7 +1,9 @@
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.spider import Spider
 from scrapy.selector import Selector
+from scrapy.loader.processors import Join, MapCompose
 
+from ScrapyG.locations import alllocations
 from ScrapyG.items import FareItem
 
 from selenium import selenium
@@ -10,15 +12,17 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-#from scrapy.contrib.loader.processor import Join, MapCompose
 
 import time
 import datetime
 from datetime import timedelta
 
-class GHSpider(CrawlSpider):
+class GHSpider(Spider):
 	name = "gh"
-	download_delay = 5
+	custom_settings = {
+		"DOWNLOAD_DELAY": 3,
+		"RETRY_ENABLED": True,
+	}
 	allowed_domains = ["https://www.greyhound.com"]
 	start_urls = ["https://www.greyhound.com/"]
 	
@@ -29,7 +33,7 @@ class GHSpider(CrawlSpider):
 		#self.user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
 		#self.accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
 		self.driver.set_window_size(1120, 1000)
-		CrawlSpider.__init__(self)
+		
 		self.daysout = daysoutcmmd
 		self.regioncount = regioncounter
 		
@@ -39,8 +43,8 @@ class GHSpider(CrawlSpider):
 		CrawlSpider.__del__(self)
 
 	def parse(self, response):
-		#locations = (["93650","95350"],["93650","94102"],["93650","94203"],["93650","94102"],["93650","95201"],["93650","93301"],["93650","90001"],["95350","93650"],["94203","93650"],["94102","93650"],["93301","93650"],["90001","93650"],["95201","93650"],["32771","22079"],["32771","22079"],["22079","32771"],["Washington","60290"],["60290","94608"],["60290","Washington"],["60290","90001"],["90001","60290"],["60290","98101"],["60290","80201"],["94608","60290"],["10001","60290"],["98101","60290"],["60290","10001"],["90001","98101"],["80201","60290"],["94203","60290"],["60290","97201"])
-		locations = (["97201","97301","PDX","SLM"],["97301","97201","SLM","PDX"],["97201","olympia","PDX","OLW"],["olympia","97201","OLW","PDX"],["97201","97401","PDX","EUG"],["97401","97201","EUG","PDX"],["97301","97401","SLM","EUG"],["97401","97301","EUG","SLM"],["97301","olympia","SLM","OLW"],["olympia","97301","OLW","SLM"],["97601","97201","KFS","PDX"],["97601","97401","KFS","EUG"],["97601","97301","KFS","SLM"],["97601","98501","KFS","OLW"],["seattle","97301","SEA","SLM"],["97301","seattle","SLM","SEA"],["seattle","olympia","SEA","OLW"],["olympia","seattle","OLW","SEA"],["seattle","97401","SEA","EUG"],["97401","seattle","EUG","SEA"])
+		locations = []
+		locations = alllocations
 		items = []
 		
 		for location in locations:
